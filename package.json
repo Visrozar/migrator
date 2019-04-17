@@ -1,0 +1,24 @@
+{
+  "name": "migrator",
+  "version": "1.0.0",
+  "description": "An API that allows to run simple mongoDB migrations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Visrozar/migrator.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "NodeJS",
+    "Migration"
+  ],
+  "author": "Elvis Rozario",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Visrozar/migrator/issues"
+  },
+  "homepage": "https://github.com/Visrozar/migrator#readme"
+}
