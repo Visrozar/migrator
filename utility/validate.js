@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator/check');
 
-exports.checkForErrors = async function (req, res, next) {
+exports.validateMigrate = async function (req, res, next) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         let er= errors.mapped();
