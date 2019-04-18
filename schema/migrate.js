@@ -71,7 +71,6 @@ module.exports = {
         isString: {
             errorMessage: "Value Type should be a string"
         },
-        oneOf: ['string', 'array', 'object', 'number', 'query'],
         errorMessage: 'Value type is invalid'
     }, // value type can be string, array, object, number, query
     value: {
