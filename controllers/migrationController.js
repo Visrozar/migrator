@@ -27,7 +27,7 @@ exports.runMigration = async function (req, res) {
             }
 
         } catch (error) {
-            return res.json({ status: 422, message: error.message });
+            return res.status(422).json({ status: 422, message: error.message });
         }
     });
 
