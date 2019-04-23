@@ -5,12 +5,12 @@ module.exports = {
             errorMessage: "Database URI cannot be null"
         },
         in: ["body"],
+        isString: {
+            errorMessage: "Database URI should be a string"
+        },
         matches: {
             options: [/^(mongodb:(?:\/{2})?)((\w+?):(\w+?)@|:?@?)(\S+?):(\d+)(\/(\S+?))?(\?replicaSet=(\S+?))?$/],
             errorMessage: "Invalid URI"
-        },
-        isString: {
-            errorMessage: "Database URI should be a string"
         },
         errorMessage: 'URI is invalid'
     },
