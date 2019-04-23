@@ -39,10 +39,6 @@ describe('POST /migrate validation tests', function () {
         
     });
 
-    it('returns appropriate error when value type is not sent', function (done) {
-        
-    });
-
     it('returns appropriate error when value is not sent', function (done) {
         
     });

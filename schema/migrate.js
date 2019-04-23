@@ -8,10 +8,10 @@ module.exports = {
         isString: {
             errorMessage: "Database URI should be a string"
         },
-        matches: {
-            options: [/^(mongodb:(?:\/{2})?)((\w+?):(\w+?)@|:?@?)(\S+?):(\d+)(\/(\S+?))?(\?replicaSet=(\S+?))?$/],
-            errorMessage: "Invalid URI"
-        },
+        // matches: {
+        //     options: [/^(mongodb:(?:\/{2})?)((\w+?):(\w+?)@|:?@?)(\S+?):(\d+)(\/(\S+?))?(\?replicaSet=(\S+?))?$/],
+        //     errorMessage: "Invalid URI"
+        // },
         errorMessage: 'URI is invalid'
     },
     database: {
@@ -62,17 +62,6 @@ module.exports = {
         },
         errorMessage: 'Key name is invalid'
     }, // name of the key to add/edit/delete
-    value_type: {
-        exists: {
-            checkNull: true,
-            errorMessage: "Value Type cannot be null"
-        },
-        in: ["body"],
-        isString: {
-            errorMessage: "Value Type should be a string"
-        },
-        errorMessage: 'Value type is invalid'
-    }, // value type can be string, array, object, number, query
     value: {
         exists: {
             checkNull: true,
