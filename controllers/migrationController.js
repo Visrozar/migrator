@@ -1,3 +1,3 @@
 exports.runMigration = async function (req, res) {
-    res.json({ status: 'success', data: 'test' });
+    res.json({ status: 200, data: 'test' });
 };
