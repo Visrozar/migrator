@@ -40,13 +40,8 @@ app.use(bodyParser.json({ extended: true }));
 app.use('/', routes);
 
 // if route unknown send 404
-app.get('**', function (req, res) {
-    res.send('404');
-});
-
-// if route unknown send 404
-app.post('**', function (req, res) {
-    res.send('404');
+app.use('**', function (req, res) {
+    return res.status(404).json({ status: 404, message: 'route not found' });
 });
 
 process.on('unhandledRejection', (reason, promise) => {
