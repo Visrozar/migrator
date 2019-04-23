@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 // require express-rate-limiter for request rate limiting
 const RateLimit = require('express-rate-limit');
 // define the port to host
-const port = process.env.PORT || 8095;
+const port = process.env.PORT || 8080;
 // import cors for CORS calls
 const cors = require('cors');
 
