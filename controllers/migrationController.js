@@ -5,21 +5,22 @@ exports.runMigration = async function (req, res) {
         try {
             if (err) throw err;
             let dbo = db.db(req.body.database);
+            if(req.body.condition) let condition = req.body.condition;
+            else let condition = {};
+
             switch (req.body.action) {
                 case 'add':
                 case 'edit':
                     newvalue = { '$set': {} };
                     newvalue['$set'][req.body.key] = req.body.value;
-
-                    response = await dbo.collection(req.body.collection).updateMany({}, newvalue);
+                    response = await dbo.collection(req.body.collection).updateMany(condition, newvalue);
                     db.close();
                     return res.json({ status: 200, data: `successfully ${req.body.action}ed the required field in ${response.modifiedCount} records` });
 
                 case 'delete':
                     newvalue = { '$unset': {} };
                     newvalue['$unset'][req.body.key] = req.body.value;
-
-                    response = await dbo.collection(req.body.collection).updateMany({}, newvalue);
+                    response = await dbo.collection(req.body.collection).updateMany(condition, newvalue);
                     db.close();
                     return res.json({ status: 200, data: `successfully deleted the required field in ${response.modifiedCount} records` });
                 default:
