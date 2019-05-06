@@ -8,6 +8,8 @@ An API to make changes to a Mongo Collection.
 * Edit an existing field's value
 * Delete an existing field from an entire collection
 
+* Add/Edit/Delete based on conditions
+
 ## Future Scope
 
-* Allow to run update queries
+* Allow to run queries
