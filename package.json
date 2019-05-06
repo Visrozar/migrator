@@ -4,7 +4,8 @@
   "description": "An API that allows to run simple mongoDB migrations",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'test'"
+    "test": "mocha 'test'",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
