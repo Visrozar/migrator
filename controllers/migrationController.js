@@ -5,8 +5,8 @@ exports.runMigration = async function (req, res) {
         try {
             if (err) throw err;
             let dbo = db.db(req.body.database);
-            if(req.body.condition) let condition = req.body.condition;
-            else let condition = {};
+            var condition = {}
+            if(req.body.condition) var condition = req.body.condition;
 
             switch (req.body.action) {
                 case 'add':
