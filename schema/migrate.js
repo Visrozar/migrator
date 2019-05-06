@@ -62,12 +62,24 @@ module.exports = {
         },
         errorMessage: 'Key name is invalid'
     }, // name of the key to add/edit/delete
-    value: {
+    value_type: {
         exists: {
             checkNull: true,
-            errorMessage: "Value cannot be null"
+            errorMessage: "Value Type cannot be null"
         },
         in: ["body"],
-        errorMessage: 'Value is invalid'
+        matches: {
+            options: [/\b(?:string|array|object|int|float|null)\b/],
+            errorMessage: "Invalid value type"
+        },
+        errorMessage: 'Value Type is invalid'
     }, // value can be a string, array, object, number, query
+    // value: {
+    //     exists: {
+    //         checkNull: true,
+    //         errorMessage: "Value cannot be null"
+    //     },
+    //     in: ["body"],
+    //     errorMessage: 'Value is invalid'
+    // }, // value can be a string, array, object, number, query
 }

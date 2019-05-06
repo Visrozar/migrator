@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const { ObjectId } = require('mongodb'); // or ObjectID 
 
 exports.runMigration = async function (req, res) {
     MongoClient.connect(req.body.uri, { useNewUrlParser: true }, async function (err, db) {
@@ -6,8 +7,11 @@ exports.runMigration = async function (req, res) {
             if (err) throw err;
             let dbo = db.db(req.body.database);
             var condition = {}
-            if(req.body.condition) var condition = req.body.condition;
-
+            if (req.body.condition_type) {
+                req.body.condition = typeCast(req.body.condition, req.body.condition_type)
+                var condition = req.body.condition;
+            }
+            req.body.value = typeCast(req.body.value, req.body.value_type);
             switch (req.body.action) {
                 case 'add':
                 case 'edit':
@@ -31,5 +35,30 @@ exports.runMigration = async function (req, res) {
             return res.status(422).json({ status: 422, message: error.message });
         }
     });
-
 };
+
+function typeCast(data, data_type) {
+    switch (data_type) {
+        case 'null':
+            return null
+        case 'int':
+            return data != '' ? parseInt(data) : 0
+        case 'float':
+            return data != '' ? parseFloat(data) : 0.0
+        case 'array':
+            return data != '' ? JSON.parse(data) : []
+        case 'object':
+            if (data == '') data = {}
+            else {
+                data = JSON.parse(data);
+                // check whether the value is objectID
+                for (const key in data) {
+                    if (data.hasOwnProperty(key) && key=='_id') {
+                        const element = data[key];
+                        if (ObjectId.isValid(element)) data[key] = ObjectId(data[key])
+                    }
+                }
+            }
+            return data;
+    }
+}
