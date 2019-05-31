@@ -7,10 +7,8 @@ exports.runMigration = async function (req, res) {
             if (err) throw err;
             let dbo = db.db(req.body.database);
             var condition = {}
-            if (req.body.condition_type) {
-                req.body.condition = typeCast(req.body.condition, req.body.condition_type)
-                var condition = req.body.condition;
-            }
+            req.body.condition = typeCast(req.body.condition, 'object')
+            var condition = req.body.condition ? req.body.condition : {};
             req.body.value = typeCast(req.body.value, req.body.value_type);
             switch (req.body.action) {
                 case 'add':
@@ -53,7 +51,7 @@ function typeCast(data, data_type) {
                 data = JSON.parse(data);
                 // check whether the value is objectID
                 for (const key in data) {
-                    if (data.hasOwnProperty(key) && key=='_id') {
+                    if (data.hasOwnProperty(key) && key == '_id') {
                         const element = data[key];
                         if (ObjectId.isValid(element)) data[key] = ObjectId(data[key])
                     }
